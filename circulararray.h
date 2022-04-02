@@ -34,18 +34,6 @@ private:
     int prev(int);
 };
 
-template <class T> 
-T& CircularArray<T>::operator[](int index)
-{   
-    int temp = this->front; 
-    if (temp + index >= this->capacity) {
-        temp = 0;
-        index = index - this->back; 
-    };  
-    return array[temp + index];
-}
-
-
 template <class T>
 CircularArray<T>::CircularArray()
 {
@@ -186,6 +174,17 @@ void CircularArray<T>::clear(){
     delete[] array;
     this->array = new T[this->capacity];
     this->front = this->back = -1;
+}
+
+template <class T> 
+T& CircularArray<T>::operator[](int index)
+{   
+    int temp = this->front; 
+    if (temp + index >= this->capacity) {
+        temp = 0;
+        index = index - this->back; 
+    };  
+    return array[temp + index];
 }
 
 template <class T> 
